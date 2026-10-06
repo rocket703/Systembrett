@@ -1,0 +1,345 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Systembrett-Aufstellung in Magdeburg | Vanessa';
+const description = 'Systembrett-Aufstellung in Magdeburg im geschützten Einzelsetting. Psychologische Beratung mit Vanessa: Anliegen klären, Figuren aufstellen, neue Blickwinkel finden.';
+
+const faqs = [
+  {
+    q: 'Was ist ein Systembrett?',
+    a: 'Ein Systembrett ist ein Holzbrett mit einem Rand. Darauf stellen Sie kleine Figuren für Menschen, Rollen oder Themen. Abstände und Blickrichtungen machen Beziehungen sichtbar, die im Gespräch leicht abstrakt bleiben. Der Rand kann für das stehen, was gerade nicht im inneren Kreis ist.',
+  },
+  {
+    q: 'Wie unterscheidet sich das von einer Familienaufstellung in der Gruppe?',
+    a: 'Bei einer Gruppenaufstellung vertreten andere Teilnehmende die Personen Ihres Systems. Am Systembrett arbeiten wir zu zweit. Sie wählen die Figuren und stellen sie selbst. Das eignet sich, wenn ein Thema nicht in eine Gruppe gehört.',
+  },
+  {
+    q: 'Wie läuft eine Sitzung ab?',
+    a: 'Zuerst klären wir das Anliegen. Dann stellen Sie das Bild auf. Wir schauen, was sich zeigt, und Sie können Figuren verschieben. Am Ende bleibt ein Bild, das Sie in den Alltag mitnehmen. Die Dauer einer ersten Stunde steht noch als Platzhalter und wird vor dem Termin besprochen.',
+  },
+  {
+    q: 'Für wen ist eine Aufstellung am Systembrett geeignet?',
+    a: 'Für wiederkehrende Themen in Familie, Partnerschaft, Freundschaft oder Beruf, und für Entscheidungen, bei denen mehrere Seiten beteiligt sind. Sie sollten das Anliegen selbst betreffen und bereit sein, es in Ruhe anzuschauen.',
+  },
+  {
+    q: 'Ersetzt das eine Psychotherapie oder ärztliche Behandlung?',
+    a: 'Nein. Die Systembrett-Aufstellung ist psychologische Beratung. Sie stellt keine Diagnose und ersetzt keine Psychotherapie, keine ärztliche Behandlung und kein Notfallangebot.',
+  },
+  {
+    q: 'Wo findet die Aufstellung statt?',
+    a: 'In der Praxis in Magdeburg. Die genaue Adresse wird hier ergänzt. Menschen aus der Stadt und der näheren Umgebung, etwa Schönebeck, Burg, Wolmirstedt, Barleben oder Haldensleben, sind willkommen.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      name: 'Vanessa Wöhner – Systembrett-Aufstellung',
+      description,
+      areaServed: {
+        '@type': 'City',
+        name: 'Magdeburg',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '[Straße und Hausnummer]',
+        addressLocality: 'Magdeburg',
+        postalCode: '[PLZ]',
+        addressCountry: 'DE',
+      },
+      telephone: '[Telefonnummer]',
+      email: '[E-Mail-Adresse]',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    },
+  ],
+};
+---
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="hero">
+    <div class="hero-pin">
+      <div class="hero-frame">
+      <div class="wrap">
+        <div class="hero-copy">
+          <p class="kicker">Psychologische Beratung · Magdeburg</p>
+          <h1>
+            <span class="hero-lead">Wenn sich etwas verknotet anfühlt:</span>
+            <span class="hero-place">Stellen Sie es auf.</span>
+          </h1>
+          <p class="lede">
+            Ein Anliegen bekommt einen Ort. Mit Figuren stellen Sie Menschen, Rollen oder Themen auf.
+            Wir arbeiten zu zweit, ohne Gruppe. Ich begleite Sie mit Fragen – die Figuren bewegen Sie selbst.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#kontakt">Kostenloses Erstgespräch</a>
+            <a class="btn ghost" href="#ablauf">So läuft eine Stunde</a>
+          </div>
+        </div>
+      </div>
+      <figure class="board-stage" data-board>
+        <img
+          src="/systembrett-brett.png"
+          width="1048"
+          height="759"
+          alt="Systembrett mit konzentrischen Kreisen, Harz- und Glasfiguren sowie kleinen Symbolen für Haus, Auto und Stühle"
+        />
+      </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="anliegen" data-reveal>
+    <div class="wrap">
+      <div class="prose">
+        <p class="kicker">Das Brett</p>
+        <h2>Was auf dem Brett sichtbar wird</h2>
+        <p>
+          Viele Themen sind schon oft besprochen und bleiben trotzdem unübersichtlich. Das Systembrett übersetzt sie in ein Bild:
+          wer nah steht, wer abgewandt ist, was am Rand liegt. Dadurch lässt sich eine Beziehung, eine Rolle oder eine Entscheidung von außen anschauen.
+        </p>
+      </div>
+      <ul class="topics" data-field>
+        <li class="topic">
+          <span class="dot frog" aria-hidden="true"></span>
+          <h3>Familie und Herkunft</h3>
+          <p>Wiederkehrende Muster, Loyalitäten und das, was zwischen den Generationen mitläuft.</p>
+        </li>
+        <li class="topic">
+          <span class="dot frost" aria-hidden="true"></span>
+          <h3>Partnerschaft</h3>
+          <p>Nähe, Abstand und die Rollen, die sich in einer Beziehung festgesetzt haben.</p>
+        </li>
+        <li class="topic">
+          <span class="dot clay" aria-hidden="true"></span>
+          <h3>Beruf und Entscheidung</h3>
+          <p>Teams, Aufgaben und Wahlmöglichkeiten, wenn mehrere Seiten gleichzeitig ziehen.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt" id="ablauf" data-reveal>
+    <div class="wrap">
+      <div class="prose">
+        <p class="kicker">Ablauf</p>
+        <h2>Eine Stunde am Systembrett</h2>
+        <p>
+          Für eine erste Aufstellung planen wir <span class="ph">[Dauer, zum Beispiel 90 Minuten]</span> ein.
+          Das Honorar beträgt <span class="ph">[Honorar, zum Beispiel 90 € je Stunde]</span> und wird vor dem Termin besprochen.
+        </p>
+      </div>
+      <ol class="path">
+        <li>
+          <span class="path-n">01</span>
+          <h3>Anliegen</h3>
+          <p>Wir klären, worum es geht und welche Personen oder Themen auf das Brett gehören.</p>
+        </li>
+        <li>
+          <span class="path-n">02</span>
+          <h3>Aufstellen</h3>
+          <p>Sie wählen die Figuren und setzen sie selbst. Ich fasse die Figuren nicht an.</p>
+        </li>
+        <li>
+          <span class="path-n">03</span>
+          <h3>Anschauen</h3>
+          <p>Abstände und Blickrichtungen werden benannt. Sie können verschieben und eine andere Perspektive ausprobieren.</p>
+        </li>
+        <li>
+          <span class="path-n">04</span>
+          <h3>Mitnehmen</h3>
+          <p>Am Ende steht ein Bild, das für den Alltag brauchbar ist. Es gibt kein festes Drehbuch für die Lösung.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="unterschied" data-reveal>
+    <div class="wrap">
+      <div class="prose">
+        <p class="kicker">Einzelsetting</p>
+        <h2>Systembrett oder Aufstellung in der Gruppe</h2>
+      </div>
+      <div class="compare">
+        <article>
+          <h3>Am Systembrett</h3>
+          <p>Nur Sie und ich. Figuren statt fremder Stellvertreter. Das Thema bleibt im Raum. Termine nach Vereinbarung in Magdeburg.</p>
+        </article>
+        <article>
+          <h3>In der Gruppe</h3>
+          <p>Andere Personen stellen sich für Mitglieder Ihres Systems zur Verfügung. Das ist eine andere Form und hier nicht das Angebot.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="magdeburg" data-reveal>
+    <div class="wrap place-block">
+      <div class="prose">
+        <p class="kicker">Magdeburg</p>
+        <h2>Praxis in Magdeburg</h2>
+        <p>
+          Die Aufstellung findet in <span class="ph">[Straße und Hausnummer]</span>, <span class="ph">[PLZ]</span> Magdeburg statt.
+          Die Praxis ist für Menschen aus der Stadt gedacht und für die nähere Umgebung.
+        </p>
+        <p>
+          Ich bin Psychologin. Die genaue Berufsbezeichnung, <span class="ph">[zum Beispiel M.Sc. Psychologie]</span>, steht im Impressum, sobald sie eingetragen ist.
+          Die Arbeit am Systembrett ist Beratung. Sie ist kein Ersatz für Psychotherapie oder ärztliche Behandlung.
+        </p>
+      </div>
+      <p class="towns">
+        <strong>Magdeburg</strong>
+        <span>Schönebeck</span>
+        <span>Burg</span>
+        <span>Wolmirstedt</span>
+        <span>Barleben</span>
+        <span>Haldensleben</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="ueber" data-reveal>
+    <div class="wrap about">
+      <p class="about-name">Vanessa<br /><span class="ph">Wöhner</span></p>
+      <div class="prose">
+        <p class="kicker">Über mich</p>
+        <h2>Im Einzelsetting</h2>
+        <p>
+          <span class="ph">[Zwei oder drei Sätze: Ausbildung, warum das Systembrett, wie Sie arbeiten. Noch nicht erfinden.]</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="faq" data-reveal>
+    <div class="wrap faq">
+      <p class="kicker">Fragen</p>
+      <h2>Vor dem ersten Termin</h2>
+      {faqs.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="kontakt" data-reveal>
+    <div class="wrap contact">
+      <div class="prose">
+        <p class="kicker">Kontakt</p>
+        <h2>Termin in Magdeburg anfragen</h2>
+        <p>Schreiben Sie kurz, worum es geht. Ich melde mich mit einem Terminvorschlag.</p>
+      </div>
+      <div class="contact-card">
+        <p>Vanessa <span class="ph">Wöhner</span></p>
+        <p><span class="ph">Lindenplan 26</span><br /><span class="ph">39120</span> Magdeburg</p>
+        <p>Telefon: <span class="ph">[Telefonnummer]</span></p>
+        <p>E-Mail: <span class="ph">[E-Mail-Adresse]</span></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const board = document.querySelector('[data-board]');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobileQuery = window.matchMedia('(max-width: 799px)');
+
+    const pose = (progress: number, mobile: boolean) => {
+      if (mobile) {
+        const x = 40 - progress * 16;
+        const y = 8 - progress * 14;
+        const r = 12 - progress * 4;
+        return `translate3d(${x}%, ${y}%, 0) rotate(${r}deg)`;
+      }
+      const x = -6 - progress * 2;
+      const y = -50 - progress * 2;
+      const r = 14 - progress * 3;
+      const s = 1 + progress * 0.02;
+      return `translate3d(${x}%, ${y}%, 0) rotate(${r}deg) scale(${s})`;
+    };
+
+    const update = () => {
+      if (!(board instanceof HTMLElement)) return;
+      const hero = board.closest('.hero');
+      if (!(hero instanceof HTMLElement)) return;
+      const mobile = mobileQuery.matches;
+      if (reduce) {
+        board.style.transform = pose(0, mobile);
+        return;
+      }
+      const range = Math.max(hero.offsetHeight - window.innerHeight, 1);
+      const progress = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top) / range);
+      board.style.transform = pose(progress, mobile);
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+
+    const navAnchors = [...document.querySelectorAll('#hauptnav a')];
+    const watched = ['anliegen', 'ablauf', 'kontakt']
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el instanceof HTMLElement);
+    if (watched.length && navAnchors.length) {
+      const spy = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            navAnchors.forEach((anchor) => {
+              const on = anchor.getAttribute('href')?.endsWith(`#${entry.target.id}`) ?? false;
+              if (on) anchor.setAttribute('aria-current', 'true');
+              else anchor.removeAttribute('aria-current');
+            });
+          });
+        },
+        { rootMargin: '-42% 0px -48% 0px', threshold: 0 },
+      );
+      watched.forEach((section) => spy.observe(section));
+    }
+
+    const field = document.querySelector('[data-field]');
+    if (field instanceof HTMLElement && !reduce && !mobileQuery.matches) {
+      const topics = [...field.querySelectorAll('.topic')];
+      field.addEventListener('pointermove', (event) => {
+        const rect = field.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width - 0.5;
+        const py = (event.clientY - rect.top) / rect.height - 0.5;
+        topics.forEach((topic, index) => {
+          if (!(topic instanceof HTMLElement)) return;
+          const depth = (index + 1) * 5;
+          topic.style.translate = `${(px * depth).toFixed(1)}px ${(py * depth).toFixed(1)}px`;
+        });
+      });
+      field.addEventListener('pointerleave', () => {
+        topics.forEach((topic) => {
+          if (topic instanceof HTMLElement) topic.style.translate = '';
+        });
+      });
+    }
+
+    if (!reduce) {
+      document.documentElement.classList.add('has-motion');
+      const reveal = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-in');
+            reveal.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.16 },
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => reveal.observe(el));
+    }
+  </script>
+</Base>
