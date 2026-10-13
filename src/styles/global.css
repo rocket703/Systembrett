@@ -19,12 +19,15 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header) + 1rem); }
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  min-height: 100vh;
+  min-height: 100svh;
   overflow-x: clip;
   background: transparent; /* das feste Bild liegt darunter */
 }
 body.nav-open { overflow: hidden; }
+main { flex: 1; }
 
 /* —— Festes Hintergrundbild für alle Seiten —— */
 .backdrop {
@@ -48,7 +51,13 @@ body.nav-open { overflow: hidden; }
 /* Mobil: Bild nur hinter dem Hero-Band, darunter ruhiger Nebelgrund.
    Das Bild ist etwas größer als das Band und nach oben verschoben, damit die Steine über der Headline sitzen. */
 @media (max-width: 959px) {
-  :root { --hero-band: clamp(24rem, 66svh, 38rem); }
+  /* Startbildschirm = genau eine Bildschirmhöhe: Zitat + Buttons haben feste Höhe (--hero-below),
+     das Bildband füllt den Rest. svh = mit sichtbarer Adressleiste, springt also nicht beim Scrollen. */
+  :root {
+    --hero-below: 20rem;
+    --hero-band: clamp(17rem, calc(100vh - var(--hero-below)), 46rem);
+    --hero-band: clamp(17rem, calc(100svh - var(--hero-below)), 46rem);
+  }
   .backdrop {
     height: var(--hero-band);
     -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent);
@@ -246,13 +255,9 @@ p { margin: 0 0 1rem; color: var(--muted); }
 /* Logo-Zeichen: dieselbe Schildkröte wie im Favicon */
 .brand__mark {
   flex: none;
-  width: 1.85rem;
+  width: 2.3rem;
   height: auto;
-  aspect-ratio: 48 / 56;
 }
-.brand__mark-body { fill: var(--forest-deep); }
-.brand__mark-shell { fill: var(--forest); }
-.brand__mark-ring { fill: none; stroke: var(--accent); stroke-width: 2.4; }
 /* —— Header: unsichtbar über dem Hero, beim Scrollen ein Hauch Papier —— */
 .site-header {
   position: sticky;
@@ -311,8 +316,8 @@ p { margin: 0 0 1rem; color: var(--muted); }
 .nav-toggle__lines::before,
 .nav-toggle__lines::after {
   display: block;
-  width: 1.5rem;
-  height: 1.5px;
+  width: 24px;
+  height: 2px; /* ganze Pixel: alle drei Striche gleich dick */
   border-radius: 1px;
   background: currentColor;
   transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease, background-color 0.2s ease;
@@ -324,8 +329,8 @@ p { margin: 0 0 1rem; color: var(--muted); }
   position: absolute;
   left: 0;
 }
-.nav-toggle__lines::before { transform: translateY(-0.45rem); }
-.nav-toggle__lines::after { transform: translateY(0.45rem); }
+.nav-toggle__lines::before { transform: translateY(-7px); }
+.nav-toggle__lines::after { transform: translateY(7px); }
 .nav-toggle[aria-expanded="true"] .nav-toggle__lines { background-color: transparent; }
 .nav-toggle[aria-expanded="true"] .nav-toggle__lines::before { transform: rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .nav-toggle__lines::after { transform: rotate(-45deg); }
@@ -347,6 +352,11 @@ p { margin: 0 0 1rem; color: var(--muted); }
     display: grid;
     position: absolute;
     inset: var(--header) -1.25rem auto;
+    align-content: start;
+    height: calc(100vh - var(--header));
+    height: calc(100dvh - var(--header)); /* offen: volle Bildschirmhöhe */
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 0.5rem 1.25rem 1.5rem;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
@@ -473,6 +483,7 @@ p { margin: 0 0 1rem; color: var(--muted); }
   font-size: clamp(1.2rem, 1.6vw, 1.4rem);
   text-align: center;
 }
+.hero__tel { display: none; }
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -485,6 +496,9 @@ p { margin: 0 0 1rem; color: var(--muted); }
   .hero {
     display: grid;
     grid-template-columns: 1.25rem minmax(0, 1fr) 1.25rem;
+    grid-template-rows: auto 1fr auto; /* Restplatz landet beim Zitat, Buttons sitzen immer unten */
+    min-height: 100vh;
+    min-height: 100svh;
   }
   .hero > .wrap,
   .hero__content,
@@ -513,7 +527,7 @@ p { margin: 0 0 1rem; color: var(--muted); }
     z-index: 1;
     padding-bottom: 1.75rem;
     /* „aufstellung in Magdeburg“ füllt immer genau die Breite (≈ 8,75 em) */
-    font-size: min(calc((100vw - 2.5rem) / 8.75), 4.1rem);
+    font-size: min(calc((100vw - 2.5rem) / 8.95), 4.1rem); /* 8,95 statt 8,75: bei 375 px brach die Zeile sonst um */
   }
   .hero__title-head {
     color: var(--hero-on-image, var(--on-dark));
@@ -524,11 +538,12 @@ p { margin: 0 0 1rem; color: var(--muted); }
   .hero__quote {
     grid-column: 2;
     grid-row: 2; /* mobil: Zitat vor den Buttons */
+    align-self: center;
     justify-self: center;
     width: auto;
     margin-top: 2.25rem;
   }
-  .hero__actions { grid-column: 2; grid-row: 3; margin-top: 2rem; margin-bottom: 3.5rem; }
+  .hero__actions { grid-column: 2; grid-row: 3; justify-content: center; margin-top: 2rem; margin-bottom: 3.5rem; }
 }
 @media (min-width: 960px) {
   main > .hero + * {
@@ -559,9 +574,13 @@ p { margin: 0 0 1rem; color: var(--muted); }
     mask-image: linear-gradient(to bottom, #000 45%, transparent 85%);
   }
   .hero__content {
+    display: grid;
+    width: fit-content; /* so breit wie die Headline: Buttons und Zitat stehen mittig darunter */
     max-width: 46rem;
     padding: calc(var(--header) + clamp(2rem, 10vh, 6.5rem)) 0 4rem;
   }
+  .hero__title { justify-self: start; } /* behält ihre eigene Breite, auch wenn die Buttons breiter sind */
+  .hero__cta { justify-self: center; }
 }
 
 /* —— Methode —— */
@@ -818,6 +837,82 @@ p { margin: 0 0 1rem; color: var(--muted); }
   letter-spacing: -0.03em;
 }
 .page-head__lede { max-width: 36rem; margin-top: 1.2rem; }
+.not-found {
+  display: grid;
+  min-height: min(68svh, 46rem);
+  align-items: center;
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+.not-found__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.8fr);
+  align-items: center;
+  gap: clamp(2rem, 7vw, 7rem);
+  max-width: 68rem;
+}
+.not-found__copy { width: fit-content; } /* so breit wie die Überschrift: Buttons stehen mittig darunter */
+.not-found__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.not-found__code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.015em;
+  margin: 0;
+  color: var(--forest);
+  font-family: var(--font-display);
+  font-size: clamp(10rem, 22vw, 19rem);
+  font-variant-numeric: lining-nums;
+  font-weight: 400;
+  letter-spacing: -0.09em;
+  line-height: 0.8;
+}
+.not-found__code img {
+  flex: none;
+  width: 0.74em;
+  height: auto;
+  margin-inline: 0.04em -0.026em; /* rechts enger: die 4 ist links offen, so wirken beide Abstände zum Panzer gleich */
+  object-fit: contain;
+  filter: drop-shadow(0 0.03em 0.05em rgb(20 40 30 / 0.12));
+}
+.not-found h1 {
+  margin: 0;
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+.not-found .lead { width: 0; min-width: 100%; margin-top: 1.25rem; } /* zählt nicht zur Breite, füllt aber die der Überschrift */
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.75rem;
+}
+@media (max-width: 699px) {
+  .not-found__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .not-found { padding-block: 2.5rem 3.5rem; }
+  .not-found__code {
+    grid-row: 1;
+    justify-self: center;
+    font-size: clamp(6.5rem, 34vw, 11rem);
+  }
+  .not-found__copy { grid-row: 2; width: auto; }
+  .not-found h1 { font-size: clamp(2.4rem, 11vw, 3.4rem); }
+  .not-found__actions { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .not-found__actions .btn { width: 100%; }
+}
 .page-head__links {
   position: relative;
   display: grid;
@@ -920,6 +1015,7 @@ p { margin: 0 0 1rem; color: var(--muted); }
 @media (max-width: 859px) {
   .place__img {
     aspect-ratio: 16 / 10;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0; /* oben rund, unten läuft das Bild aus */
     -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
     mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
   }
@@ -1357,10 +1453,40 @@ p { margin: 0 0 1rem; color: var(--muted); }
   .teaser .btn,
   .faq__intro .btn,
   .contact-form .btn { width: 100%; }
-  .hero__actions { gap: 1.5rem; justify-content: center; }
+  /* Startseite mobil: Erstgespräch + Anruf nebeneinander, „So läuft ein Termin ab“ darunter */
+  .hero__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem 0.75rem;
+  }
+  .hero__actions .btn--primary { padding-inline: 1rem; }
+  .hero__actions .hero__tel { display: inline-flex; width: 3.1rem; padding: 0; }
+  .hero__actions .btn--ghost:not(.hero__tel) { grid-column: 1 / -1; }
+  .hero__actions .btn--primary { white-space: nowrap; }
   .process__head { margin-bottom: 2.5rem; }
   .contact-form { padding: 1.25rem; border-radius: var(--radius); }
   .faq__layout { gap: 2rem; }
+}
+
+/* Kurze Handys: Zitat und Abstände kompakter, damit das Bild nicht zu niedrig wird */
+@media (max-width: 959px) and (max-height: 720px) {
+  :root { --hero-below: 17rem; }
+  .hero__quote { margin-top: 1.5rem; font-size: 1.1rem; }
+  .hero__actions { margin-top: 1.5rem; margin-bottom: 2rem; gap: 1rem 0.75rem; }
+}
+/* Handy quer: kein Bildschirmzwang, die Seite scrollt normal */
+@media (max-width: 959px) and (max-height: 500px) {
+  :root { --hero-band: 24rem; }
+  .hero { min-height: 0; }
+}
+/* sehr schmale Handys: Zitat bleibt zweizeilig */
+@media (max-width: 359px) {
+  .hero__quote { font-size: 1.08rem; }
+}
+/* sehr schmale Handys: „Erstgespräch vereinbaren“ bleibt einzeilig neben dem Anruf-Button */
+@media (max-width: 359px) {
+  .hero__actions { column-gap: 0.5rem; }
+  .hero__actions .btn--primary { padding-inline: 0.6rem; font-size: 0.94rem; }
 }
 
 /* —— Bewegung: ein einziger Moment beim Laden —— */
