@@ -6,5 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: process.env.SITE_URL || 'https://vanessa-systembrett.de',
   base: process.env.BASE_PATH || '/',
+  // Astro 7 entfernt sonst Leerzeichen zwischen Inline-Elementen (z. B. „aufstellungin Magdeburg“)
+  compressHTML: true,
   integrations: [sitemap()],
 });
