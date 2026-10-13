@@ -50,7 +50,7 @@
   /* Mobil: H1 auf dem Bild über dunklem Verlauf (Werte im ungünstigsten Fall geprüft) */
   --hero-on-image: #eef2f1;        /* ≥ 7,4:1 */
   --hero-on-image-muted: #d5dbd3;  /* ≥ 10,6:1 */
-  --hero-accent-on-image: #8fd46b; /* Forest Green aufgehellt, ≥ 6,7:1 */
+  --hero-accent-on-image: var(--forest); /* bewusst wie Desktop-Hero (#1e6b0b), Kontrast auf dem Bild nur ca. 2,5:1 */
   --hero-line-on-image: #d9926f;
 
   --veil: rgb(238 242 241 / 0.9); /* Nebel über dem festen Bild: alle Texte ≥ 4,5:1 auch über den dunkelsten Steinen */
