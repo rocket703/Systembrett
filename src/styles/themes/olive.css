@@ -1,0 +1,58 @@
+/* Theme „Olive“ — Charcoal, Forest Green, Muted Olive, Dry Sage, Alabaster.
+   Vorlage: 50514F · 2A970C · 93B76A · D1CAA1 · E3E3E3
+   Alle fünf Farben unverändert im Einsatz:
+   Alabaster = Seite, Dry Sage = abgesetzte Sektionen, Charcoal = Header,
+   Muted Olive = Footer (dunkle Schrift), Forest Green = Figuren, Logo-Punkt, Favicon.
+   Forest Green hält mit Text nur 3,8:1 (weiß) bzw. 3,0:1 (auf Alabaster) — Buttons und Links
+   nutzen daher eine abgedunkelte Variante, die auch auf Dry Sage AA (≥ 4,5:1) schafft.
+   Außerhalb dieser Datei: theme-color in BaseLayout.astro, public/favicon.svg */
+:root {
+  --bg: #e3e3e3;          /* Alabaster */
+  --surface: #d1caa1;     /* Dry Sage: abgesetzte Sektionen */
+  --surface-2: #ebebea;
+  --stone: #7a7b78;
+  --line: #c2c2be;
+  --forest: #1a5e08;      /* Forest Green, abgedunkelt: alles Anklickbare */
+  --forest-deep: #134706;
+  --brand: #2a970c;       /* Forest Green: Figuren, Logo-Punkt, Favicon */
+  --green-soft: #c9dcb2;  /* Muted Olive, aufgehellt */
+  --earth: #2e4a22;       /* tiefes Oliv: Labels und dunkle Akzentfläche */
+  --slate: #50514f;       /* Charcoal: Header */
+  --ink: #2b2c2a;
+  --muted: #4b4c4a;
+  --on-dark: #f0f0ef;
+  --on-dark-muted: #d0d1ce;
+  --on-dark-line: rgba(240, 240, 239, 0.2);
+
+  --veil: color-mix(in srgb, var(--bg) 90%, transparent);
+  --white: #fff;
+  --field: #fff;
+  --placeholder: #6e6f6c;
+  --error: #b5654f;
+  --error-text: #a1533f;
+  --on-dark-soft: rgba(240, 240, 239, 0.12);
+  --on-dark-soft-hover: rgba(240, 240, 239, 0.24);
+  --focus-ring: rgba(42, 151, 12, 0.22);
+
+  --footer-bg: #93b76a;   /* Muted Olive */
+  --footer-text: #1f201e;
+  --footer-muted: #2b2c2a;
+  --footer-hover: #000;
+  --footer-focus: #1f201e;
+
+  /* Buttons und Akzent (Zuordnung wie bisher) */
+  --primary: var(--forest);
+  --on-primary: var(--white);
+  --primary-hover: var(--forest-deep);
+  --on-primary-hover: var(--white);
+  --btn-light: var(--bg);
+  --on-btn-light: var(--forest-deep);
+  --btn-light-hover: var(--white);
+  --on-btn-light-hover: var(--forest-deep);
+  --accent: var(--earth);
+
+  --shadow: 0 1px 2px rgba(43, 44, 42, 0.04), 0 12px 32px rgba(43, 44, 42, 0.06);
+  --shadow-btn: 0 10px 24px rgba(26, 94, 8, 0.22);
+  --shadow-header: 0 6px 20px rgba(43, 44, 42, 0.18);
+  --shadow-menu: 0 16px 30px rgba(43, 44, 42, 0.18);
+}

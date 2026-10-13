@@ -1,0 +1,29 @@
+---
+/**
+ * Wiederkehrendes Motiv: ein rundes Systembrett (Ringe) mit Figuren als Kreise.
+ * Rein dekorativ – Farben kommen aus den CSS-Tokens.
+ */
+interface Props {
+  class?: string;
+  rings?: boolean;
+}
+
+const { class: className = '', rings = true } = Astro.props;
+---
+
+<svg class:list={['figures', className]} viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+  {
+    rings && (
+      <g class="figures__rings" fill="none" stroke-width="1">
+        <circle cx="100" cy="100" r="96" />
+        <circle cx="100" cy="100" r="70" />
+        <circle cx="100" cy="100" r="44" />
+      </g>
+    )
+  }
+  <circle class="figures__a" cx="86" cy="92" r="11" />
+  <circle class="figures__b" cx="114" cy="86" r="8" />
+  <circle class="figures__c" cx="104" cy="118" r="9" />
+  <circle class="figures__d" cx="152" cy="54" r="6" />
+  <circle class="figures__d" cx="44" cy="150" r="5" />
+</svg>

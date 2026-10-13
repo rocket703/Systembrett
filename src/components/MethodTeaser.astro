@@ -1,0 +1,34 @@
+---
+import { steps } from '../data/process';
+import { withBase } from '../lib/paths';
+---
+
+<section class="section teaser" aria-labelledby="teaser-heading">
+  <div class="wrap teaser__grid">
+    <div class="teaser__copy">
+      <h2 id="teaser-heading">Wie eine Aufstellung abläuft</h2>
+      <p>
+        Mit kleinen Figuren stellen Sie Menschen, Rollen oder Themen auf dem Systembrett auf. So wird sichtbar,
+        was im Gespräch oft abstrakt bleibt. Ein Termin hat vier Schritte.
+      </p>
+    </div>
+
+    <ol class="teaser__steps">
+      {
+        steps.map((step) => (
+          <li>
+            <span class="teaser__n" aria-hidden="true">{step.n}</span>
+            <div class="teaser__step-copy">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="teaser__action">
+      <a class="btn btn--primary" href={withBase('/methode')}>Methode & Ablauf ansehen</a>
+    </div>
+  </div>
+</section>

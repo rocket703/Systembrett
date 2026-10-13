@@ -1,0 +1,59 @@
+/* Theme „Erdton“ — Farbkonzept Stand 2026-10-12.
+   Aktives Theme wird in src/layouts/BaseLayout.astro importiert.
+   Außerhalb dieser Datei hängen am Farbkonzept noch:
+   - <meta name="theme-color" content="#424a45"> in BaseLayout.astro (= --slate)
+   - public/favicon.svg (Sicherung: erdton.favicon.svg in diesem Ordner)
+   - public/systembrett-brett.png (Bildmotiv) */
+:root {
+  /* Palette: Hellgrau, Stein, Pflanzengrün, Erdbraun (Holz des Bretts).
+     Grün = alles Anklickbare. Braun = dunkle Flächen und Labels. Grün und Braun nie direkt aufeinander. */
+  --bg: #f1f1ee;
+  --surface: #e3e2dd;
+  --surface-2: #eae9e5;
+  --stone: #77756e;
+  --line: #c9c7c0;
+  --forest: #2f4a38;
+  --forest-deep: #233829;
+  --brand: var(--forest); /* Dekor: Figuren, Logo-Punkt */
+  --green-soft: #d4dcd3;
+  --earth: #4a3a2d;
+  --slate: #424a45; /* Schiefer: kühl gegen das warme Braun, verwandt mit dem Grün. Header und Footer */
+  --ink: #2a2724;
+  --muted: #5a5650;
+  --on-dark: #f1f1ee;
+  --on-dark-muted: #ccc9c4;
+  --on-dark-line: rgba(241, 241, 238, 0.2);
+
+  /* Ehemals fest in global.css eingetragen */
+  --veil: color-mix(in srgb, var(--bg) 90%, transparent);
+  --white: #fff; /* Text auf Grün/dunklen Flächen, Hover-Hervorhebungen */
+  --field: #fff; /* Formular-Karte und Felder im Fokus */
+  --placeholder: #706c65;
+  --error: #b5654f;
+  --error-text: #a1533f;
+  --on-dark-soft: rgba(241, 241, 238, 0.12);
+  --on-dark-soft-hover: rgba(241, 241, 238, 0.24);
+  --focus-ring: rgba(47, 74, 56, 0.18);
+
+  --footer-bg: var(--slate);
+  --footer-text: var(--on-dark);
+  --footer-muted: var(--on-dark-muted);
+  --footer-hover: var(--white);
+  --footer-focus: var(--on-dark);
+
+  /* Buttons und Akzent (Zuordnung wie bisher) */
+  --primary: var(--forest);
+  --on-primary: var(--white);
+  --primary-hover: var(--forest-deep);
+  --on-primary-hover: var(--white);
+  --btn-light: var(--bg);
+  --on-btn-light: var(--forest-deep);
+  --btn-light-hover: var(--white);
+  --on-btn-light-hover: var(--forest-deep);
+  --accent: var(--earth);
+
+  --shadow: 0 1px 2px rgba(42, 39, 36, 0.04), 0 12px 32px rgba(42, 39, 36, 0.06);
+  --shadow-btn: 0 10px 24px rgba(47, 74, 56, 0.22);
+  --shadow-header: 0 6px 20px rgba(42, 39, 36, 0.18);
+  --shadow-menu: 0 16px 30px rgba(42, 39, 36, 0.18);
+}

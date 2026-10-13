@@ -1,0 +1,32 @@
+---
+const pillars = [
+  { title: 'Zu zweit', text: 'Wir arbeiten im Einzelsetting. Ihr Thema bleibt im Raum.' },
+  { title: 'Mit Figuren', text: 'Menschen, Rollen oder Themen bekommen eine Figur und einen Platz.' },
+  { title: 'Ohne Druck', text: 'Sie bestimmen Tempo und Tiefe. Nichts muss gelöst werden.' },
+] as const;
+---
+
+<section class="section intro" id="methode" aria-labelledby="methode-heading">
+  <div class="wrap intro__grid">
+    <div>
+      <h2 id="methode-heading">Ein Anliegen bekommt einen Ort</h2>
+    </div>
+    <div>
+      <p class="lead">
+        Mit Figuren stellen Sie Menschen, Rollen oder Themen auf dem Systembrett auf. Abstände und Blickrichtungen
+        machen sichtbar, was im Gespräch oft abstrakt bleibt.
+      </p>
+    </div>
+  </div>
+
+  <ul class="wrap pillars">
+    {
+      pillars.map((item) => (
+        <li class="pillar">
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

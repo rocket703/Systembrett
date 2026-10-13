@@ -1,0 +1,30 @@
+---
+import { withBase } from '../lib/paths';
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__media" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="hero__content">
+      <h1 id="hero-heading" class="hero__title">
+        <span class="hero__title-head">
+          <span class="sr-only">Systembrettaufstellung</span>
+          <span aria-hidden="true">Systembrett-<br />aufstellung</span>
+          <span class="hero__title-place">in <em>Magdeburg</em></span>
+        </span>
+        <span class="sr-only"> – </span>
+        <span class="hero__title-sub">Individuelle Begleitung und systemische Beratung</span>
+      </h1>
+      <div class="hero__cta">
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={withBase('/kontakt')}>Erstgespräch vereinbaren</a>
+          <a class="btn btn--ghost" href={withBase('/methode')}>So läuft ein Termin ab</a>
+        </div>
+        <blockquote class="quote hero__quote">
+          <p>„Verstehen beginnt oft dort, wo wir bereit sind, genauer hinzusehen.“</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { faqs } from '../data/faq';
+import { withBase } from '../lib/paths';
+---
+
+<section class="section faq section--accent" id="faq" aria-labelledby="faq-heading">
+  <div class="wrap faq__layout">
+    <div class="faq__intro">
+      <h2 id="faq-heading">Häufige Fragen</h2>
+      <p>Ihre Frage ist nicht dabei? Schreiben Sie mir einfach – ich melde mich mit einem Terminvorschlag.</p>
+      <a class="btn btn--primary" href={withBase('/kontakt')}>Erstgespräch vereinbaren</a>
+    </div>
+
+    <div class="faq__list">
+      {
+        faqs.map((item) => (
+          <details class="faq__item">
+            <summary>
+              <span>{item.q}</span>
+              <span class="faq__icon" aria-hidden="true" />
+            </summary>
+            <div class="faq__answer">
+              <p>
+                {item.a}
+                {'duration' in item && <strong>{item.duration}</strong>}
+                {'duration' in item && item.after}
+              </p>
+              {'points' in item && (
+                <ul>
+                  {item.points.map((point) => <li>{point}</li>)}
+                </ul>
+              )}
+              {'points' in item && <p>{item.after}</p>}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

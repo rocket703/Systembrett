@@ -1,49 +1,342 @@
 ---
-import Base from '../layouts/Base.astro';
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { seoPages } from '../data/seo';
+import { site } from '../data/site';
+
+const toc = [
+  { id: 'ueberblick', label: 'Datenschutz auf einen Blick' },
+  { id: 'hosting', label: 'Hosting' },
+  { id: 'pflichtinformationen', label: 'Allgemeine Hinweise und Pflichtinformationen' },
+  { id: 'datenerfassung', label: 'Datenerfassung auf dieser Website' },
+  { id: 'tools', label: 'Plugins und Tools' },
+];
 ---
-<Base
-  title="Datenschutz | Vanessa · Systembrett Magdeburg"
-  description="Datenschutzerklärung der Praxis von Vanessa in Magdeburg. Angaben zu Verantwortlicher und Hosting sind Platzhalter."
+
+<LegalLayout
+  title={seoPages.datenschutz.title}
+  description={seoPages.datenschutz.description}
+  heading="Datenschutz"
+  lede="Welche Daten beim Besuch und bei einer Anfrage anfallen und was damit passiert."
+  updated="Oktober 2026"
+  toc={toc}
 >
-  <article class="legal wrap">
-    <p class="kicker">Rechtliches</p>
-    <h1>Datenschutz</h1>
-    <p class="note">Platzhalter vor dem Veröffentlichen ersetzen. Das ist ein Gerüst nach DSGVO, keine Rechtsberatung. Wenn später ein Formular, ein Kalender oder Reichweitenmessung dazukommt, muss dieser Text ergänzt werden.</p>
+  <p class="note">
+    Die eckigen Felder sind Platzhalter. Vor dem Veröffentlichen durch die echten Angaben ersetzen.
+    Das ist keine Rechtsberatung.
+  </p>
 
-    <h2>Verantwortliche</h2>
+  <section class="legal__section" id="ueberblick">
+    <h2>1. Datenschutz auf einen Blick</h2>
+
+    <h3>Allgemeine Hinweise</h3>
     <p>
-      Vanessa <span class="ph">[Nachname]</span><br />
-      <span class="ph">[Straße und Hausnummer]</span><br />
-      <span class="ph">[PLZ]</span> Magdeburg<br />
-      E-Mail: <span class="ph">[E-Mail-Adresse]</span><br />
-      Telefon: <span class="ph">[Telefonnummer]</span>
+      Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert,
+      wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert
+      werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text
+      aufgeführten Datenschutzerklärung.
     </p>
 
-    <h2>Aufruf der Website</h2>
+    <h3>Datenerfassung auf dieser Website</h3>
+    <p><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
     <p>
-      Beim Aufruf dieser Seiten verarbeitet der Server, der die Website ausliefert, technisch nötige Daten: IP-Adresse, Datum und Uhrzeit, aufgerufene Adresse und Angaben des Browsers. Das geschieht, damit die Seite ausgeliefert und abgesichert werden kann. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+      Die Datenverarbeitung auf dieser Website erfolgt durch die Websitebetreiberin. Die Kontaktdaten können Sie dem
+      Abschnitt <a href="#verantwortliche-stelle">„Hinweis zur verantwortlichen Stelle“</a> in dieser
+      Datenschutzerklärung entnehmen.
+    </p>
+    <p><strong>Wie erfassen wir Ihre Daten?</strong></p>
+    <p>
+      Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten
+      handeln, die Sie in ein Kontaktformular eingeben.
     </p>
     <p>
-      Hosting-Anbieter: <span class="ph">[Name und Anschrift des Hosters, sobald die Seite online ist]</span>.
-      Mit dem Hoster ist ein Vertrag zur Auftragsverarbeitung zu schließen, sobald er personenbezogene Daten verarbeitet.
+      Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem
+      technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser
+      Daten erfolgt automatisch, sobald Sie diese Website betreten.
+    </p>
+    <p><strong>Wofür nutzen wir Ihre Daten?</strong></p>
+    <p>
+      Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten
+      können zur Bearbeitung Ihrer Kontaktanfragen verwendet werden.
+    </p>
+    <p><strong>Welche Rechte haben Sie bezüglich Ihrer Daten?</strong></p>
+    <p>
+      Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten
+      personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu
+      verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die
+      Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung
+      Ihrer personenbezogenen Daten zu verlangen sowie das Recht auf Beschwerde bei der zuständigen Aufsichtsbehörde.
+    </p>
+  </section>
+
+  <section class="legal__section" id="hosting">
+    <h2>2. Hosting</h2>
+    <p>Wir hosten die Inhalte unserer Website auf einem virtuellen Server (vServer) bei folgendem Anbieter:</p>
+
+    <h3>IP-Projects</h3>
+    <p>
+      Anbieter ist die IP-Projects GmbH &amp; Co. KG, Am Vogelherd 14, 97295 Waldbrunn, Deutschland (nachfolgend:
+      „IP-Projects“). Die Server befinden sich in Deutschland.
+    </p>
+    <p>
+      Wenn Sie unsere Website besuchen, werden auf dem Server Logfiles inklusive Ihrer IP-Adresse erfasst (siehe
+      „Server-Log-Dateien“). Details zum Umgang mit Daten bei IP-Projects entnehmen Sie der Datenschutzerklärung von
+      IP-Projects:
+      <a href="https://www.ip-projects.de/de/company/data-protection" target="_blank" rel="noopener noreferrer"
+        >https://www.ip-projects.de/de/company/data-protection</a
+      >.
+    </p>
+    <p>
+      Die Verwendung von IP-Projects erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes
+      Interesse an einer möglichst zuverlässigen Darstellung und sicheren Bereitstellung unserer Website.
     </p>
 
-    <h2>Kontakt per E-Mail oder Telefon</h2>
+    <h3>Server-Log-Dateien</h3>
     <p>
-      Wenn Sie anrufen oder schreiben, verwende ich Ihre Angaben, um die Anfrage zu beantworten und einen Termin abzustimmen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit es um die Beratung geht, sonst Art. 6 Abs. 1 lit. f DSGVO. Die Nachrichten lösche ich, wenn der Vorgang erledigt ist und keine Aufbewahrungspflicht entgegensteht.
+      Beim Aufruf dieser Website speichert der Webserver automatisch Informationen in sogenannten Server-Log-Dateien,
+      die Ihr Browser automatisch übermittelt. Dies sind:
+    </p>
+    <ul>
+      <li>IP-Adresse</li>
+      <li>Datum und Uhrzeit der Anfrage</li>
+      <li>aufgerufene Seite bzw. Datei</li>
+      <li>Referrer-URL (die zuvor besuchte Seite)</li>
+      <li>Browsertyp und Browserversion sowie verwendetes Betriebssystem</li>
+    </ul>
+    <p>
+      Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung erfolgt auf
+      Grundlage von Art. 6 Abs. 1 lit. f DSGVO; wir haben ein berechtigtes Interesse an der technisch fehlerfreien
+      Darstellung und der Sicherheit unserer Website. Die Log-Dateien werden nach
+      <span class="ph">[z. B. 14 Tagen]</span> automatisch gelöscht.
     </p>
 
-    <h2>Keine Reichweitenmessung, keine Schriftarten von Dritten</h2>
+    <h3>Auftragsverarbeitung</h3>
     <p>
-      Diese Website setzt keine Analyse-Cookies und lädt keine Schriftarten von externen Servern. Es gibt kein Kontaktformular, das Daten an einen weiteren Dienst sendet.
+      Wir haben einen Vertrag über Auftragsverarbeitung (AVV) mit dem oben genannten Anbieter geschlossen. Hierbei
+      handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der gewährleistet, dass dieser die
+      personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO
+      verarbeitet.
     </p>
 
-    <h2>Ihre Rechte</h2>
+    <h3>Technische Betreuung der Website</h3>
     <p>
-      Sie können Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit verlangen und einer Verarbeitung widersprechen. Außerdem können Sie sich bei einer Aufsichtsbehörde beschweren. Für Sachsen-Anhalt ist das der Landesbeauftragte für den Datenschutz Sachsen-Anhalt.
+      Die Einrichtung, Wartung und technische Betreuung dieser Website und des Servers erfolgt durch
+      {site.designer.name}, <span class="ph">[Vorname Nachname, Straße und Hausnummer, PLZ Ort]</span>. Im Rahmen
+      dieser Tätigkeit kann {site.designer.name} Zugriff auf die oben genannten Server-Log-Dateien sowie auf
+      technisch gespeicherte Daten erhalten. Die Verarbeitung erfolgt ausschließlich nach unseren Weisungen auf
+      Grundlage von Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in einem sicheren und
+      zuverlässigen Betrieb der Website.
+    </p>
+    <p>
+      Mit {site.designer.name} haben wir einen Vertrag über Auftragsverarbeitung (AVV) gemäß Art. 28 DSGVO
+      geschlossen.
+    </p>
+  </section>
+
+  <section class="legal__section" id="pflichtinformationen">
+    <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
+
+    <h3>Datenschutz</h3>
+    <p>
+      Die Betreiberin dieser Seiten nimmt den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre
+      personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser
+      Datenschutzerklärung.
+    </p>
+    <p>
+      Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Die vorliegende
+      Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu
+      welchem Zweck das geschieht.
+    </p>
+    <p>
+      Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail)
+      Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
     </p>
 
-    <h2>Stand</h2>
-    <p>September 2026. Diesen Stand anpassen, wenn sich Hosting oder Angebote ändern.</p>
-  </article>
-</Base>
+    <h3 id="verantwortliche-stelle">Hinweis zur verantwortlichen Stelle</h3>
+    <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+    <p>
+      {site.fullName}<br />
+      <span class="ph">[Praxisname / Unternehmensbezeichnung, falls vorhanden – sonst Zeile löschen]</span><br />
+      {site.address.street}<br />
+      {site.address.zip} {site.address.city}
+    </p>
+    <p>
+      Telefon: <span class="ph">{site.phone}</span><br />
+      E-Mail: <span class="ph">{site.email}</span>
+    </p>
+    <p>
+      Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die
+      Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
+    </p>
+
+    <h3>Speicherdauer</h3>
+    <p>
+      Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre
+      personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes
+      Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht,
+      sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B.
+      steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die Löschung nach Fortfall
+      dieser Gründe.
+    </p>
+
+    <h3>Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website</h3>
+    <p>
+      Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage
+      von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs.
+      1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten
+      in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO.
+    </p>
+    <p>
+      Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten
+      wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Weiterhin verarbeiten wir Ihre Daten, sofern diese
+      zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind, auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die
+      Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO
+      erfolgen.
+    </p>
+
+    <h3>Empfänger von personenbezogenen Daten</h3>
+    <p>
+      Im Rahmen unserer Geschäftstätigkeit arbeiten wir mit verschiedenen externen Stellen zusammen (z. B. Webhostern,
+      E-Mail-Dienstleistern). Dabei ist teilweise auch eine Übermittlung von personenbezogenen Daten an diese externen
+      Stellen erforderlich. Wir geben personenbezogene Daten an externe Stellen nur dann weiter, wenn dies im Rahmen
+      einer Vertragserfüllung erforderlich ist, wenn wir gesetzlich dazu verpflichtet sind oder wenn eine Einwilligung
+      Ihrerseits vorliegt. Bei der Heranziehung von Auftragsverarbeitern schließen wir entsprechende
+      Auftragsverarbeitungsverträge (AVV).
+    </p>
+
+    <h3>Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
+    <p>
+      Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits
+      erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung
+      bleibt vom Widerruf unberührt.
+    </p>
+
+    <h3>Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen Direktwerbung (Art. 21 DSGVO)</h3>
+    <p class="legal__caps">
+      Wenn die Datenverarbeitung auf Grundlage von Art. 6 Abs. 1 lit. e oder f DSGVO erfolgt, haben Sie jederzeit das
+      Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen die Verarbeitung Ihrer
+      personenbezogenen Daten Widerspruch einzulegen; dies gilt auch für ein auf diese Bestimmungen gestütztes
+      Profiling. Die jeweilige Rechtsgrundlage, auf der eine Verarbeitung beruht, entnehmen Sie dieser
+      Datenschutzerklärung. Wenn Sie Widerspruch einlegen, werden wir Ihre betroffenen personenbezogenen Daten nicht
+      mehr verarbeiten, es sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre
+      Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder
+      Verteidigung von Rechtsansprüchen (Widerspruch nach Art. 21 Abs. 1 DSGVO).
+    </p>
+
+    <h3>Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
+    <p>
+      Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde,
+      insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthaltsorts, ihres Arbeitsplatzes oder des Orts des
+      mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger verwaltungsrechtlicher oder
+      gerichtlicher Rechtsbehelfe.
+    </p>
+
+    <h3>Recht auf Datenübertragbarkeit</h3>
+    <p>
+      Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags
+      automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen
+      zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies
+      nur, soweit es technisch machbar ist.
+    </p>
+
+    <h3>Auskunft, Berichtigung und Löschung</h3>
+    <p>
+      Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über
+      Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und
+      ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema
+      personenbezogene Daten können Sie sich jederzeit an uns wenden.
+    </p>
+
+    <h3>Recht auf Einschränkung der Verarbeitung</h3>
+    <p>
+      Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können
+      Sie sich jederzeit an uns wenden.
+    </p>
+
+    <h3>SSL- bzw. TLS-Verschlüsselung</h3>
+    <p>
+      Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel
+      Anfragen, die Sie an uns als Seitenbetreiberin senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte
+      Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt, und an
+      dem Schloss-Symbol in Ihrer Browserzeile.
+    </p>
+    <p>
+      Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von
+      Dritten mitgelesen werden.
+    </p>
+  </section>
+
+  <section class="legal__section" id="datenerfassung">
+    <h2>4. Datenerfassung auf dieser Website</h2>
+
+    <h3>Kontaktformular &amp; E-Mail-Kommunikation über Mailtory</h3>
+    <p>
+      Wenn Sie uns per Kontaktformular oder E-Mail Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular
+      inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von
+      Anschlussfragen bei uns gespeichert.
+    </p>
+    <p>
+      Für die Bereitstellung des Kontaktformulars sowie für die E-Mail-Verarbeitung und den Mailversand nutzen wir die
+      Dienste des Anbieters Mailtory / Systory (Betreiber: Systory Solutions,
+      <span class="ph">[Straße und Hausnummer, PLZ Ort]</span>, Deutschland).
+    </p>
+    <p>
+      Die Verarbeitung und Speicherung aller E-Mails und Formularinhalte erfolgt DSGVO-konform ausschließlich auf
+      Servern in Deutschland.
+    </p>
+    <p>
+      Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der
+      Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen
+      übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an
+      uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO),
+      sofern diese abgefragt wurde.
+    </p>
+    <p>
+      Sofern Sie in Ihrer Anfrage Angaben zu Ihrer Gesundheit machen, verarbeiten wir diese auf Grundlage Ihrer
+      ausdrücklichen Einwilligung (Art. 9 Abs. 2 lit. a DSGVO), die Sie über das Kontrollkästchen im Kontaktformular
+      erteilen. Diese Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen.
+    </p>
+    <p>
+      Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre
+      Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach
+      abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere
+      Aufbewahrungsfristen – bleiben unberührt.
+    </p>
+
+    <h3>Auftragsverarbeitung</h3>
+    <p>
+      Wir haben einen Vertrag über Auftragsverarbeitung (AVV) mit Mailtory geschlossen, um die datenschutzkonforme
+      Verarbeitung Ihrer Anfragen zu gewährleisten.
+    </p>
+  </section>
+
+  <section class="legal__section" id="tools">
+    <h2>5. Plugins und Tools</h2>
+
+    <h3>Lokale Bereitstellung von Schriftarten (Local Fonts)</h3>
+    <p>
+      Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Web Fonts, die lokal auf unserem
+      Server eingebunden sind. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in Ihren
+      Browser-Cache, um Texte und Schriftarten korrekt anzuzeigen.
+    </p>
+    <p>
+      Hierbei wird keine Verbindung zu externen Servern (wie z. B. Google Fonts) aufgebaut. Die Nutzung der lokalen
+      Schriftarten erfolgt im Interesse einer einheitlichen und ansprechenden Darstellung unseres Online-Angebots. Dies
+      stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.
+    </p>
+
+    <h3>Links zu Google Maps</h3>
+    <p>
+      Für die Anfahrt verlinken wir auf Google Maps. Es handelt sich um einen einfachen Link; Karten oder Inhalte von
+      Google werden auf dieser Website nicht eingebunden. Eine Verbindung zu Google entsteht erst, wenn Sie den Link
+      „Route öffnen“ anklicken. Für die Verarbeitung auf der Seite von Google gilt dann die Datenschutzerklärung von
+      Google.
+    </p>
+
+    <h3>Kein Tracking &amp; keine Werbe-Cookies</h3>
+    <p>
+      Unsere Website nutzt keine Tracking- oder Analyse-Tools (wie Google Analytics, Matomo etc.) und setzt keine
+      technisch nicht notwendigen Cookies oder Werbe-Cookies ein. Ein Cookie-Banner ist daher auf dieser Seite nicht
+      erforderlich.
+    </p>
+  </section>
+</LegalLayout>

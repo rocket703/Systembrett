@@ -1,0 +1,4 @@
+/* Lokal gehostete Webfonts (keine Anfragen an Google) – Fraunces für Überschriften, Atkinson Hyperlegible Next für Fließtext */
+@import '@fontsource-variable/fraunces/full.css';
+@import '@fontsource-variable/fraunces/full-italic.css';
+@import '@fontsource-variable/atkinson-hyperlegible-next/index.css';

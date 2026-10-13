@@ -1,0 +1,157 @@
+---
+import '../styles/fonts.css';
+import '../styles/themes/lichtung.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+import { site } from '../data/site';
+import { defaultOgImage } from '../data/seo';
+import { withBase } from '../lib/paths';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogTitle?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  /** Pfeil „Nach oben“ anzeigen */
+  toTop?: boolean;
+}
+
+const {
+  title,
+  description = seoFallback(),
+  ogTitle,
+  ogImage = defaultOgImage,
+  noindex = false,
+  toTop = false,
+} = Astro.props;
+
+function seoFallback() {
+  return 'Systembrett-Aufstellung in Magdeburg im geschützten Einzelsetting. Psychologische Beratung mit Vanessa Wöhner.';
+}
+
+const siteUrl = Astro.site ?? new URL('https://vanessa-systembrett.de');
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const absoluteOgImage = new URL(ogImage, siteUrl).href;
+const resolvedOgTitle = ogTitle ?? title;
+
+const professionalSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${siteUrl.origin}/#practice`,
+  name: `${site.fullName} – Systembrett-Aufstellung`,
+  description,
+  url: siteUrl.href,
+  image: absoluteOgImage,
+  telephone: site.phone.startsWith('[') ? undefined : site.phone,
+  email: site.email.startsWith('[') ? undefined : site.email,
+  areaServed: { '@type': 'City', name: site.address.city },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.zip,
+    addressLocality: site.address.city,
+    addressCountry: 'DE',
+  },
+  priceRange: '€€',
+};
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
+    />
+    <meta name="author" content={site.fullName} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#eef2f1" />
+    <link rel="canonical" href={canonicalURL.href} />
+    <link rel="icon" href={withBase('/favicon.ico')} sizes="48x48" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon-32x32.png')} type="image/png" sizes="32x32" />
+    <link rel="icon" href={withBase('/favicon-16x16.png')} type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+    <link rel="manifest" href={withBase('/site.webmanifest')} />
+
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${site.name} – ${site.tagline}`} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:image:alt" content="Systembrett mit Figuren – psychologische Beratung Magdeburg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOgImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(professionalSchema)} />
+  </head>
+  <body id="top">
+    <div class="backdrop" aria-hidden="true">
+      <picture>
+        <source
+          type="image/webp"
+          srcset={`${site.images.stones[800]} 800w, ${site.images.stones[1280]} 1280w, ${site.images.stones[1920]} 1920w`}
+          sizes="100vw"
+        />
+        <img
+          class="backdrop__img"
+          src={withBase('/images/stones.jpg')}
+          alt=""
+          width="1920"
+          height="1440"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </picture>
+    </div>
+    <Header />
+    <main id="inhalt" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    {toTop && <BackToTop />}
+
+    <script>
+      // Inhalte gleiten beim Scrollen von unten herein. Ohne JS oder bei „Bewegung reduzieren“ ist alles sofort sichtbar.
+      const motionOk = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+      if (motionOk && 'IntersectionObserver' in window) {
+        const targets = document.querySelectorAll(
+          'main > :not(.hero) .wrap > *, main > .wrap > *, main > :not(.hero) > .wrap:only-child > *'
+        );
+        const seen = new Set<Element>();
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('is-in');
+              observer.unobserve(entry.target);
+            }
+          },
+          // threshold 0: löst aus, sobald das Element ins Bild kommt – auch bei sehr langen Elementen
+          { rootMargin: '0px 0px -8% 0px', threshold: 0 }
+        );
+        targets.forEach((el) => {
+          if (seen.has(el) || !(el instanceof HTMLElement)) return;
+          seen.add(el);
+          const index = Array.from(el.parentElement?.children ?? []).indexOf(el);
+          el.style.setProperty('--reveal-i', String(Math.min(Math.max(index, 0), 4)));
+          el.setAttribute('data-reveal', '');
+          observer.observe(el);
+        });
+        document.documentElement.classList.add('js-reveal');
+      }
+    </script>
+  </body>
+</html>

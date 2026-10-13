@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  heading: string;
+  lede: string;
+  updated: string;
+  toc: { id: string; label: string }[];
+}
+
+const { title, description, heading, lede, updated, toc } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} noindex toTop>
+  <header class="legal-hero">
+    <div class="wrap legal-hero__inner">
+      <h1>{heading}</h1>
+      <p class="legal-hero__lede">{lede}</p>
+      <p class="legal-hero__meta">Stand: {updated}</p>
+    </div>
+  </header>
+
+  <div class="wrap legal">
+    <nav class="legal__toc" aria-label="Inhalt dieser Seite">
+      <p class="legal__toc-title">Inhalt</p>
+      <ol>
+        {toc.map((item) => <li><a href={`#${item.id}`}>{item.label}</a></li>)}
+      </ol>
+    </nav>
+    <article class="legal__body">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>

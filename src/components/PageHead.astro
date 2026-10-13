@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  lede: string;
+  links?: { href: string; label: string }[];
+}
+
+const { title, lede, links = [] } = Astro.props;
+---
+
+<header class="page-head">
+  <div class="wrap">
+    <h1>{title}</h1>
+    <p class="lead page-head__lede">{lede}</p>
+    {
+      links.length > 0 && (
+        <nav class="page-head__links" aria-label="Auf dieser Seite">
+          {links.map((link) => <a href={link.href}>{link.label}</a>)}
+        </nav>
+      )
+    }
+  </div>
+</header>

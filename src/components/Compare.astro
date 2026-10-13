@@ -1,0 +1,37 @@
+---
+import { site } from '../data/site';
+
+const topics = [
+  { title: 'Familie', text: 'Muster, Loyalitäten, Generationen.' },
+  { title: 'Partnerschaft', text: 'Nähe, Abstand, festgesetzte Rollen.' },
+  { title: 'Beruf', text: 'Teams, Aufgaben, Entscheidungen.' },
+] as const;
+---
+
+<section class="section section--surface" id="anliegen" aria-labelledby="anliegen-heading">
+  <div class="wrap split">
+    <div class="split__media">
+      <img
+        src={site.images.board}
+        width="1280"
+        height="720"
+        alt="Rundes Systembrett mit Kreisen, Schildkröte in der Mitte und Figuren am Rand"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="split__copy">
+      <h2 id="anliegen-heading">Womit Menschen kommen</h2>
+      <ul class="topic-list">
+        {
+          topics.map((item) => (
+            <li>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

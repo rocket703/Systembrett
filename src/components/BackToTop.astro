@@ -1,0 +1,28 @@
+<a class="to-top" href="#top" data-to-top aria-label="Nach oben">
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+    <path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</a>
+
+<script>
+  // Erscheint, sobald man gut eine halbe Bildschirmhöhe gescrollt hat
+  const link = document.querySelector('[data-to-top]');
+  if (link instanceof HTMLElement) {
+    let ticking = false;
+    const update = () => {
+      link.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.6);
+      ticking = false;
+    };
+    update();
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true }
+    );
+  }
+</script>

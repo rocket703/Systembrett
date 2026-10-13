@@ -1,0 +1,70 @@
+/* Theme „Lichtung“ — ruhig, warm, naturnah. Einzige laute Farbe: Forest Green #2A970C.
+   Prinzip: kühles Nebelweiß trägt die Fläche (passend zum Steinbild), ein tiefes Waldgrün rahmt (Header, Footer,
+   dunkle Zone), ein gedämpftes Terrakotta setzt den warmen Gegenpol. Das Grün erscheint
+   nur im Motiv, im Logo und als Hover der Buttons. Alle Textpaare AA (≥ 4,5:1). */
+:root {
+  /* Flächen */
+  --bg: #eef2f1;          /* Nebelweiß: kühl, aus dem Nebel im Steinbild abgeleitet */
+  --surface: #e9e4d8;     /* Leinen: Highlight-Zonen */
+  --surface-2: #e6ebe9;
+  --green-soft: #dde8d2;  /* Salbeinebel: Markierungen, Unterstreichungen, Figur */
+  --line: #cdd4d1;
+  --stone: #8a877e;
+
+  /* Text */
+  --ink: #1f2620;
+  --muted: #4f554f;
+  --forest: #1e6b0b;      /* Links, Fokus — Forest Green abgedunkelt, textsicher */
+  --forest-deep: #173a12;
+
+  /* Rahmen: Header, Footer, dunkle Zone */
+  --slate: #1c2b1f;       /* Tiefwald: Header */
+  --earth: #263a2b;       /* Moos: dunkle Akzentfläche (FAQ) */
+  --on-dark: #eef2f1;
+  --on-dark-muted: #c5ccc3;
+  --on-dark-line: rgba(238, 242, 241, 0.18);
+  --footer-bg: #3d4747;    /* Steingrau: Hauptton der nassen Kiesel im Hero */
+  --footer-text: #eef2f1;  /* 8,5:1 */
+  --footer-muted: #cdd5d3; /* 6,4:1 */
+  --footer-hover: #fff;
+  --footer-focus: #eef2f1;
+
+  /* Button: Basalt, ruhig. Beim Hover Waldgrün wie „Magdeburg“ mit weißer Schrift (6,6:1). */
+  --brand: #2a970c;
+  --primary: #33383a;      /* Basalt: dritter Stein im Hero (gemessen #2c2f31, eine Stufe aufgehellt) – 10,5:1 mit Nebelweiß */
+  --on-primary: #eef2f1;
+  --primary-hover: #1e6b0b;    /* Waldgrün wie „Magdeburg“ */
+  --on-primary-hover: #ffffff; /* 6,6:1 */
+  --btn-light: #eef2f1;     /* auf dunklen Flächen: Nebelweiß */
+  --on-btn-light: #1c2b1f;
+  --btn-light-hover: #1e6b0b;
+  --on-btn-light-hover: #ffffff;
+
+  /* Akzent: gedämpftes Terrakotta — Labels, Zahlen, Prozesspunkte, Figur */
+  --accent: #8e4d30;
+
+  /* Hero-Headline */
+  --hero-title: #202820;
+  --hero-place: #566159;
+  --hero-line: #b56a4a;   /* Rostlinie, greift die warmen Steine auf */
+  /* Mobil: H1 auf dem Bild über dunklem Verlauf (Werte im ungünstigsten Fall geprüft) */
+  --hero-on-image: #eef2f1;        /* ≥ 7,4:1 */
+  --hero-on-image-muted: #d5dbd3;  /* ≥ 10,6:1 */
+  --hero-accent-on-image: #8fd46b; /* Forest Green aufgehellt, ≥ 6,7:1 */
+  --hero-line-on-image: #d9926f;
+
+  --veil: rgb(238 242 241 / 0.9); /* Nebel über dem festen Bild: alle Texte ≥ 4,5:1 auch über den dunkelsten Steinen */
+  --white: #fff;
+  --field: #fff;
+  --placeholder: #6b6f69;
+  --error: #b3261e;
+  --error-text: #a3221b;
+  --on-dark-soft: rgba(238, 242, 241, 0.1);
+  --on-dark-soft-hover: rgba(238, 242, 241, 0.2);
+  --focus-ring: rgba(42, 151, 12, 0.25);
+
+  --shadow: 0 1px 2px rgba(31, 38, 32, 0.04), 0 12px 32px rgba(31, 38, 32, 0.06);
+  --shadow-btn: 0 6px 18px rgba(28, 43, 31, 0.14);
+  --shadow-header: 0 6px 20px rgba(28, 43, 31, 0.22);
+  --shadow-menu: 0 16px 30px rgba(28, 43, 31, 0.22);
+}

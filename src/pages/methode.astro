@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import Topics from '../components/Topics.astro';
+import Compare from '../components/Compare.astro';
+import Process from '../components/Process.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { seoPages } from '../data/seo';
+---
+
+<BaseLayout title={seoPages.methode.title} description={seoPages.methode.description}>
+  <PageHead
+    title="So arbeite ich am Systembrett"
+    lede="Was bei einer Aufstellung passiert, für welche Anliegen sie passt und wie ein Termin abläuft."
+    links={[
+      { href: '#methode', label: 'Die Methode' },
+      { href: '#anliegen', label: 'Anliegen' },
+      { href: '#ablauf', label: 'Ablauf' },
+    ]}
+  />
+  <Topics />
+  <Compare />
+  <Process />
+  <CtaBand />
+</BaseLayout>
