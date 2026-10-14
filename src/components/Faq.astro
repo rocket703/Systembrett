@@ -21,9 +21,7 @@ import { withBase } from '../lib/paths';
             </summary>
             <div class="faq__answer">
               <p>
-                {item.a}
-                {'duration' in item && <strong>{item.duration}</strong>}
-                {'duration' in item && item.after}
+                {item.a}{'duration' in item && <strong>{item.duration}</strong>}{'duration' in item && item.after}
               </p>
               {'points' in item && (
                 <ul>

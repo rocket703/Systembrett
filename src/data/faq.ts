@@ -31,8 +31,8 @@ export const faqs = [
   },
   {
     q: 'Was kostet eine Systembrett-Aufstellung in Magdeburg und wie lange dauert sie?',
-    a: 'Eine Erstaufstellung dauert in der Regel ',
-    duration: '2 bis 3 Stunden',
-    after: ', um Anliegen, Aufstellung und Lösungsbild ohne Zeitdruck zu erarbeiten. Folgetermine sind meist kürzer. Das Honorar bemisst sich transparent nach der Dauer und wird vor der Buchung verlässlich im Erstgespräch geklärt – ohne versteckte Kosten.',
+    a: 'Eine Sitzung dauert in der Regel ',
+    duration: '90 bis 120 Minuten',
+    after: ', um Anliegen, Aufstellung und Lösungsbild ohne Zeitdruck zu erarbeiten. Das Honorar bemisst sich transparent nach der Dauer und wird vor der Buchung verlässlich im Erstgespräch geklärt – ohne versteckte Kosten.',
   },
 ] as const;
