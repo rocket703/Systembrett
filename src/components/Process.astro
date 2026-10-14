@@ -5,20 +5,24 @@ import { steps } from '../data/process';
 <section class="section process" id="ablauf" aria-labelledby="ablauf-heading">
   <div class="wrap">
     <div class="process__head">
-      <h2 id="ablauf-heading">Ein Termin in vier Schritten</h2>
-      <ul class="process__facts">
-        <li><span>Dauer</span> <span class="ph">[z. B. 90 Min.]</span></li>
-        <li><span>Honorar</span> <span class="ph">[z. B. 90 €]</span></li>
-      </ul>
-      <p class="process__note">Beides besprechen wir vor dem Termin.</p>
+      <div>
+        <p class="eyebrow">Ablauf</p>
+        <h2 id="ablauf-heading">Ein Termin in vier Schritten</h2>
+      </div>
+      <div>
+        <dl class="process__facts">
+          <div><dt>Dauer</dt> <dd>ca. 120 Min.</dd></div>
+          <div><dt>Honorar</dt> <dd>auf Anfrage</dd></div>
+        </dl>
+        <p class="process__note">Beides besprechen wir vor dem Termin.</p>
+      </div>
     </div>
 
     <ol class="rail">
       {
         steps.map((step) => (
           <li class="rail__item">
-            <span class="rail__dot" aria-hidden="true"></span>
-            <span class="rail__n">Schritt {step.n}</span>
+            <span class="rail__n" aria-hidden="true">{step.n}</span>
             <h3>{step.title}</h3>
             <p>{step.text}</p>
           </li>

@@ -607,64 +607,112 @@ p { margin: 0 0 1rem; color: var(--muted); }
   .pillars { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
 }
 
-/* —— Anliegen (Split) —— */
+/* —— Kategorie-Zeile über Überschriften (wie „Beratungsort“) —— */
+.eyebrow {
+  margin: 0 0 0.9rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* —— Anliegen (Split): Bild läuft wie beim Beratungsort weich in den Nebel aus —— */
 .split {
   display: grid;
   gap: 2.5rem;
   align-items: center;
 }
+.split__media {
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+}
 .split__media img {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1.3;
   object-fit: cover;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  /* hineingezoomt: der graue Studiohintergrund rund ums Brett fällt aus dem Bild */
+  transform: scale(1.3);
+  transform-origin: 70% 55%;
 }
 .topic-list {
   list-style: none;
-  margin: 1.5rem 0 0;
+  margin: 1.75rem 0 0;
   padding: 0;
 }
+/* feine Linien, die wie die Hero-Linie nach rechts auslaufen */
 .topic-list li {
-  padding: 1rem 0;
-  border-top: 1px solid var(--line);
+  padding: 1.05rem 0;
+  background: linear-gradient(90deg, var(--line), transparent) top left / 100% 1px no-repeat;
 }
-.topic-list li:last-child { border-bottom: 1px solid var(--line); }
-.topic-list h3 { margin: 0 0 0.1rem; }
+.topic-list li:last-child {
+  background:
+    linear-gradient(90deg, var(--line), transparent) top left / 100% 1px no-repeat,
+    linear-gradient(90deg, var(--line), transparent) bottom left / 100% 1px no-repeat;
+}
+.topic-list h3 { margin: 0 0 0.15rem; }
 .topic-list p { margin: 0; }
 @media (min-width: 860px) {
-  .split { grid-template-columns: 1.1fr 0.9fr; gap: 4.5rem; }
-  .split__media img { aspect-ratio: 4 / 3; }
+  .split { grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.5rem, 4vw, 4rem); }
+  .split__media {
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0%, #000 70%, transparent 100%);
+  }
+  .split__media img { transform: scale(1.18); transform-origin: 78% 60%; } /* rechts läuft es aus, links darf mehr Brett bleiben */
 }
 
 /* —— Ablauf —— */
 .process__head {
-  max-width: 36rem;
-  margin-bottom: 3.5rem;
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: clamp(2.75rem, 5vw, 4rem);
 }
+.process__head h2 { max-width: 14ch; margin-bottom: 0; }
+@media (min-width: 860px) {
+  /* wie „Ein Anliegen bekommt einen Ort“: Überschrift links, Eckdaten rechts, unten bündig */
+  .process__head { grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+  .process__facts { margin-top: 0; }
+}
+/* Dauer & Honorar wie „[Ort folgt]“: Fraunces kursiv mit Terrakotta-Strich */
 .process__facts {
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 2rem;
-  margin: 1.4rem 0 0.5rem;
-  padding: 0;
-  color: var(--ink);
+  gap: 0.75rem 2.5rem;
+  margin: 1.4rem 0 1rem;
 }
-.process__facts li > span:first-child {
-  margin-right: 0.4rem;
-  font-weight: 600;
+.process__facts > div {
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 2px solid var(--accent);
+}
+.process__facts dt {
+  margin-bottom: 0.15rem;
   color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.process__facts dd {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-style: italic;
 }
 .process__note {
   margin: 0;
   font-size: 0.92rem;
-  color: var(--accent);
+  color: var(--muted);
 }
-/* Stepper: mobil senkrecht, ab 860px waagerecht */
+/* Schritte: nummerierte Kreise wie im Startseiten-Teaser, verbunden durch eine Haarlinie.
+   Mobil senkrecht, ab 860px waagerecht. */
 .rail {
-  --dot: 1.1rem;
-  --rail-gap: 2.4rem;
+  --n: 2.75rem;
+  --rail-gap: 2.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -673,48 +721,47 @@ p { margin: 0 0 1rem; color: var(--muted); }
 }
 .rail__item {
   position: relative;
-  padding-left: 2.6rem;
+  padding-left: calc(var(--n) + 1.1rem);
 }
-.rail__dot {
+.rail__n {
   position: absolute;
-  top: 0.25rem;
+  top: 0;
   left: 0;
-  width: var(--dot);
-  height: var(--dot);
+  display: grid;
+  place-items: center;
+  width: var(--n);
+  aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 6px var(--surface);
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+  color: var(--accent);
 }
 .rail__item:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: calc(0.25rem + var(--dot) + 0.7rem);
-  bottom: calc(-1 * var(--rail-gap) + 0.7rem);
-  left: calc(var(--dot) / 2 - 1px);
-  width: 2px;
-  border-radius: 2px;
+  top: calc(var(--n) + 0.6rem);
+  bottom: calc(-1 * var(--rail-gap) + 0.6rem);
+  left: calc(var(--n) / 2);
+  width: 1px;
   background: var(--line);
 }
-.rail__n {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--accent);
-}
-.rail__item h3 { font-size: clamp(1.35rem, 2vw, 1.55rem); margin-bottom: 0.45rem; }
+.rail__item h3 { font-size: clamp(1.3rem, 1.9vw, 1.5rem); margin: 0.45rem 0 0.4rem; }
 .rail__item p { margin: 0; max-width: 22rem; }
 @media (min-width: 860px) {
-  .rail { grid-template-columns: repeat(4, 1fr); }
-  .rail__item { padding: 2.6rem 0 0; }
-  .rail__dot { top: 0; }
+  .rail { --col-gap: 2rem; grid-template-columns: repeat(4, 1fr); column-gap: var(--col-gap); }
+  .rail__item { padding: calc(var(--n) + 1.25rem) 0 0; }
+  .rail__item h3 { margin-top: 0; }
   .rail__item:not(:last-child)::after {
-    top: calc(var(--dot) / 2 - 1px);
+    top: calc(var(--n) / 2);
     bottom: auto;
-    left: calc(var(--dot) + 0.9rem);
-    right: calc(-1 * var(--rail-gap) + 0.9rem);
+    left: calc(var(--n) + 0.75rem);
+    right: calc(0.75rem - var(--col-gap)); /* endet mit gleichem Abstand vor dem nächsten Kreis */
     width: auto;
-    height: 2px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), color-mix(in srgb, var(--line) 40%, transparent));
   }
 }
 
