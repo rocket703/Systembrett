@@ -29,7 +29,7 @@ export const site = {
       1280: withBase('/images/stones-1280.webp'),
       1920: withBase('/images/stones-1920.webp'),
     },
-    board: withBase('/images/systembrett-kreis.webp'),
+    board: withBase('/images/systembrett-kreis-mono.webp'), // Vorschau: entsättigt, bis ein echtes Foto von Vanessas Brett da ist
     turtle: withBase('/images/turtle.webp'),
     table: {
       800: withBase('/images/tisch-800.webp'),
