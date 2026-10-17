@@ -31,6 +31,10 @@ export const site = {
     },
     board: withBase('/images/systembrett-kreis-mono.webp'), // Vorschau: entsättigt, bis ein echtes Foto von Vanessas Brett da ist
     turtle: withBase('/images/turtle.webp'),
+    praxis: {
+      800: withBase('/images/praxis-800.webp'),
+      1100: withBase('/images/praxis-1100.webp'),
+    },
     table: {
       800: withBase('/images/tisch-800.webp'),
       1400: withBase('/images/tisch-1400.webp'),

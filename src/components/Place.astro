@@ -6,10 +6,12 @@ import { site } from '../data/site';
   <div class="wrap place__card">
     <img
       class="place__img"
-      src={site.images.turtle}
-      width="1024"
-      height="559"
-      alt=""
+      src={site.images.praxis[1100]}
+      srcset={`${site.images.praxis[800]} 800w, ${site.images.praxis[1100]} 1100w`}
+      sizes="(min-width: 860px) 55vw, 100vw"
+      width="1100"
+      height="840"
+      alt="Gezeichneter Beratungsraum: zwei Sessel, dazwischen ein kleiner Tisch mit Tee"
       loading="lazy"
       decoding="async"
     />
